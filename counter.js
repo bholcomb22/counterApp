@@ -1,14 +1,14 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-var counterSchema = new Schema ({
+const counterSchema = new Schema ({
     count:{
         type: Number,
         required: true
     }
 });
 
-var Counter = module.exports = mongoose.model("Counter", counterSchema, "counter");
+let Counter = module.exports = mongoose.model("Counter", counterSchema, "counter");
 
 //get counter
 module.exports.getCount = function(callback){
@@ -17,8 +17,8 @@ module.exports.getCount = function(callback){
 
 //update counter
 module.exports.updateCount = function(id, count, options, callback){
-    var query = {_id: id};
-    var update = {
+    let query = {_id: id};
+    let update = {
         $inc: {"count" : 1}
     };
     Counter.findOneAndUpdate(query, update, options, callback);
